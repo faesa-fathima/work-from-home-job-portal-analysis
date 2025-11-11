@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-lg p-5">
+  <h2 class="text-center text-primary fw-bold mb-4">Recruiter Portal</h2>
+  <form method="POST">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="role_domain" class="form-label fw-semibold">Select Role Domain</label>
+        <select class="form-select p-2" name="role_domain" id="role_domain" required>
+          {% for domain in role_domains %}
+            <option value="{{ domain }}">{{ domain }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="job_mode" class="form-label fw-semibold">Select Job Mode</label>
+        <select class="form-select p-2" name="job_mode" id="job_mode" required>
+          <option value="Remote">Remote</option>
+          <option value="Onsite">Onsite</option>
+          <option value="Hybrid">Hybrid</option>
+        </select>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-primary px-5 py-2">Suggest Platform</button>
+    </div>
+  </form>
+
+  {% if best_platform %}
+  <div class="alert alert-success text-center mt-5 shadow-sm">
+    <h5 class="mb-2">✅ Best Platform to Post Job:</h5>
+    <h2 class="fw-bold text-primary">{{ best_platform }}</h2>
+  </div>
+  {% endif %}
+
+  <div class="text-center mt-3">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary px-4 py-2">⬅ Back to Home</a>
+  </div>
+</div>
+{% endblock %}
